@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.mapper.MemberMapper">
+
+	<insert id="insertMember">
+		insert into jspdb5.member values(#{id},#{name},#{pass},#{reg_date},#{age},#{gender},#{email},#{phone},#{mobile},#{sample4_postcode},#{sample4_roadAddress},#{sample4_jibunAddress},#{sample4_detail})
+	</insert>
+
+	<select id="userCheck" resultType="com.itwillbs.domain.MemberBean">
+		select * from jspdb5.member where id=#{id} and pass=#{pass}
+	</select>
+
+	<select id="getMember" resultType="com.itwillbs.domain.MemberBean">
+		select * from jspdb5.member where id=#{id}
+	</select>
+	
+	<select id="getMemberList" resultType="com.itwillbs.domain.MemberBean">
+		select * from jspdb5.member
+	</select>
+
+	<update id="updateMember">
+		update jspdb5.member set id=#{id},pass=#{pass},name=#{name},email=#{email},phone=#{phone},mobile=#{mobile},sample4_postcode=#{sample4_postcode},sample4_roadAddress=#{sample4_roadAddress},sample4_jibunAddress=#{sample4_jibunAddress},sample4_detail=#{sample4_detail} where id=#{id}
+	</update>
+	
+	<delete id="userDelete">
+		delete from jspdb5.member where id=#{id}
+	</delete>
+	
+</mapper>  
+
+
+
+<!-- <mapper namespace=""> 이름 아무거나 해도 상관없음 -->
+<!-- </mapper>
+memberdao에서
+
+<insert id = "insertMember"> 이름은 헷갈리지않게 dao에 insert 메서드와 똑같이 해줬다
+	insert into member2(id,pass,name,reg_date) 여기는 디비열 이름과 같아야 하고 values(#{}...) ?대신 쓰는 표현이다  빈의 멤버변수이름과 같아야한다
+	
+</insert>
+
+
+ -->

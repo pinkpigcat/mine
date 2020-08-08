@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.itwillbs.mapper.BoardMapper">
+  
+  	<select id="getMexnum" resultType="java.lang.Integer">
+  	select max(num) from jspdb5.board2
+  	</select>
+  
+  	<insert id="insertBoard">
+  	insert into jspdb5.board2(num,name,pass,subject,content,readcount,date,file,re_ref,re_lev,re_seq,id) values(#{num},#{name},#{pass},#{subject},#{content},#{readcount},#{date},#{file},#{re_ref},#{re_lev},#{re_seq},#{id})
+  	</insert>
+  
+   	<select id="getBoardList" resultType="com.itwillbs.domain.BoardBean">
+  	select * from jspdb5.board2 order by re_ref desc,re_seq asc limit #{startRow},#{pageSize}
+  	</select>
+  	
+  	<select id="getBoardCount" resultType="java.lang.Integer">
+  	select count(*) from jspdb5.board2
+  	</select>
+  	
+  	<select id="getBoardContent" resultType="com.itwillbs.domain.BoardBean">
+  	select * from jspdb5.board2 where num=#{num}
+  	</select>
+  	
+  	<select id="boardCheck" resultType="com.itwillbs.domain.BoardBean">
+		select * from jspdb5.board2 where num=#{num} and pass=#{pass}
+	</select>
+	
+	<delete id="deleteBoard">
+		delete from jspdb5.board2 where num=#{num}
+	</delete>
+  	
+  	<update id="updateRe_seq">
+		update jspdb5.board2 set re_seq=re_seq+1 where re_ref=#{re_ref} and re_seq>#{re_seq}
+	</update>
+	
+	 <update id="updateReadCount">
+		update jspdb5.board2 set readcount=readcount+1 where num=#{num}
+	</update>
+  	
+   <update id="updateBoard">
+		update jspdb5.board2 set subject=#{subject},content=#{content} where num=#{num} and pass=#{pass}
+	</update>
+	
+	<insert id="reWrite">
+		insert into jspdb5.board2 (num,name,pass,subject,content,readcount,date,file,re_ref,re_lev,re_seq) values(#{num},#{name},#{pass},#{subject},#{content},#{readcount},#{date},#{file},#{re_ref},#{re_lev},#{re_seq}) 
+	</insert>
+	
+  
+  	
+  
+  </mapper>
