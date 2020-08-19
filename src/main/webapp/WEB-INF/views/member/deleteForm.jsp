@@ -37,14 +37,7 @@
 <!-- 메인이미지 -->
 
 <!-- 왼쪽메뉴 -->
-<nav id="sub_menu">
-<ul>
-<li><a href="#">Notice</a></li>
-<li><a href="#">Public News</a></li>
-<li><a href="../center/fwriteForm.jsp">Driver Download</a></li>
-<li><a href="#">Service Policy</a></li>
-</ul>
-</nav>
+<jsp:include page="../inc/left.jsp"/>
 <!-- 왼쪽메뉴 -->
 
 <!-- 게시판 -->

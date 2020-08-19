@@ -14,17 +14,10 @@
 
 <body>
 <div id="wrap">
-<!-- 왼쪽메뉴 -->
 <jsp:include page="../inc/top.jsp"/>
 <div id="sub_img_center" ></div> <!-- 메인이미지 -->
-<nav id="sub_menu">
-<ul>
-<li><a href="#">Notice</a></li>
-<li><a href="#">Public News</a></li>
-<li><a href="#">Driver Download</a></li>
-<li><a href="#">Service Policy</a></li>
-</ul>
-</nav>
+<!-- 왼쪽메뉴 -->
+<jsp:include page="../inc/left.jsp"/>
 <!-- 왼쪽메뉴 -->
 
 <article>

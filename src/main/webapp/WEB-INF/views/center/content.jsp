@@ -13,6 +13,7 @@
 <title>Insert title here</title>
 <link href='<c:url value="/resources/css/default.css"/>' rel="stylesheet" type="text/css">
 <link href='<c:url value="/resources/css/subpage.css"/>' rel="stylesheet" type="text/css">
+<script src='<c:url value="/resources/script/jquery-3.4.1.js"/>'></script>
 <!--[if lt IE 9]>
 <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" type="text/javascript"></script>
 <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/ie7-squish.js" type="text/javascript"></script>
@@ -27,7 +28,28 @@
 
  </script>
  <![endif]-->
+<script type="text/javascript">
+ 
 
+	$(document).ready(function(){
+		
+		$("#contentDelete").click(function(){
+			
+	var result = confirm("게시물을 삭제 하시겠습니까?");
+	
+	if (result) {
+		
+		$(location).attr("href",'<c:url value="/center/delete?num=${boardBean.num}"/>');
+	}
+			
+			
+			
+			
+			
+		});
+	});
+ 
+ </script>
 
  
 </head>
@@ -46,14 +68,7 @@
 <!-- 메인이미지 -->
 
 <!-- 왼쪽메뉴 -->
-<nav id="sub_menu">
-<ul>
-<li><a href="../center/notice.jsp">Notice</a></li>
-<li><a href="#">Public News</a></li>
-<li><a href="../center/fnotice.jsp">Driver Download</a></li>
-<li><a href="#">Service Policy</a></li>
-</ul>
-</nav>
+<jsp:include page="../inc/left.jsp"/>
 <!-- 왼쪽메뉴 -->
 
 <!-- 게시판 -->
@@ -141,8 +156,8 @@ function fun1() {
 <c:if test="${!empty sessionScope.id }">
 	  <input type="button" value="답글쓰기" class="btn" onclick="location.href='<c:url value="/center/reWriteForm?num=${boardBean.num}&re_ref=${boardBean.re_ref}&re_lev=${boardBean.re_lev}&re_seq=${boardBean.re_seq}"></c:url>'">
   <c:if test="${sessionScope.id == boardBean.name}">
-  <h1>${boardBean.id}</h1>
-		<input type="button" value="글삭제" class="btn" onclick="location.href='<c:url value="/center/delete?num=${boardBean.num}"/>'">
+<%--   <h1>${boardBean.id}</h1> --%>
+		<input type="button" value="글삭제" class="btn" id="contentDelete">
 		<input type="button" value="글수정" class="btn" onclick="location.href='<c:url value="/center/updateForm?num=${boardBean.num}"/>'">
   </c:if>
 </c:if>

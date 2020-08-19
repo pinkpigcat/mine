@@ -10,7 +10,7 @@ public interface BoardDao {
 	void insertBoard(BoardBean bb);
 	public List<BoardBean> getBoardList(PageBean pb);
 	public Integer getBoardCount();
-	public void updateBoard(int num);
+	public void updateBoard(BoardBean boardBean);
 	public void deleteBoard(int num);
 	public Integer boardCheck(BoardBean boardBean);
 	public void updateRe_seq(BoardBean bb);

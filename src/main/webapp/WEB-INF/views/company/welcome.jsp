@@ -1,23 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../css/default.css" rel="stylesheet" type="text/css">
-<link href="../css/subpage.css" rel="stylesheet" type="text/css">
- <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-
- 
- 
-
- 
- 
-
- 
- 
- 
+<link href='<c:url value="/resources/css/default.css"/>' rel="stylesheet" type="text/css">
+<link href='<c:url value="/resources/css/subpage.css"/>' rel="stylesheet" type="text/css">
  
 <!--[if lt IE 9]>
 <script src="http://ie7-js.googlecode.com/svn/version/2.1(beta4)/IE9.js" type="text/javascript"></script>
@@ -51,14 +41,7 @@
 <div id="sub_img"></div>
 <!-- 서브페이지 메인이미지 -->
 <!-- 왼쪽메뉴 -->
-<nav id="sub_menu">
-<ul>
-<li><a href="#">Welcome</a></li>
-<li><a href="#">History</a></li>
-<li><a href="#">Newsroom</a></li>
-<li><a href="#">Public Policy</a></li>
-</ul>
-</nav>
+<jsp:include page="../inc/left.jsp"/>
 <!-- 왼쪽메뉴 -->
 <!-- 내용 -->
 <article>
@@ -66,7 +49,7 @@
 <!-- <figure class="ceo"><img src="../images/company/CEO.jpg" width="196" height="226"  -->
 <!-- alt="CEO"><figcaption>Fun Web CEO Michael</figcaption> -->
 <!-- </figure> -->
-<p>오시는 길</p>
+<p><h2>오시는 길</h2></p>
 
 
 
@@ -74,13 +57,12 @@
 
  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=318e5641c9d1c5256fb615aac65ecfed&libraries=services"></script>
 
-
  
  
  <script> //////////////////// // 카카오 지도 API S /////////////////// 
  var coordXY = document.getElementById("coordXY"); //검색 지도 경도위도 알아내기
  var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스 
- var options = { center: new kakao.maps.LatLng(35.158758, 129.062093), // 위도경도 level: 3 //지도의 레벨(확대, 축소 정도) }; 
+ var options = { center: new kakao.maps.LatLng(35.097619, 128.983581), // 위도경도 level: 3 //지도의 레벨(확대, 축소 정도) }; 
  var map = new kakao.maps.Map(container, options);
 var mapTypeControl = new kakao.maps.MapTypeControl();
  map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
@@ -105,23 +87,22 @@ var iwContent = '<div style="padding:5px;">이피엔스<br>' + '<a href="https:/
  <!-- 이미지 지도를 표시할 div 입니다 -->
 <div id="staticMap" style="width:600px;height:350px;"></div>    
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=발급받은 APP KEY를 사용하세요"></script>
 <script>    
 // 이미지 지도에 표시할 마커입니다
 // 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다 
 var markers = [
     {
-        position: new kakao.maps.LatLng(35.158758, 129.062093)
+        position: new kakao.maps.LatLng(35.097619, 128.983581)
     },
     {
-        position: new kakao.maps.LatLng(35.158758, 129.062093), 
-        text: '부산 아이티윌 여기!' // text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
+        position: new kakao.maps.LatLng(35.097619, 128.983581), 
+        text: '이곳은 회사 입니다' // text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
     }
 ];
 
 var staticMapContainer  = document.getElementById('staticMap'), // 이미지 지도를 표시할 div  
     staticMapOption = { 
-        center: new kakao.maps.LatLng(35.158758, 129.062093), // 이미지 지도의 중심좌표
+        center: new kakao.maps.LatLng(35.097619, 128.983581), // 이미지 지도의 중심좌표
         level: 3, // 이미지 지도의 확대 레벨
         marker: markers // 이미지 지도에 표시할 마커 
     };    

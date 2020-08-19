@@ -51,9 +51,9 @@ public class BoardDaoImpl implements BoardDao {
 
 
 	@Override
-	public void updateBoard(int num) {
+	public void updateBoard(BoardBean boardBean) {
 		System.out.println("BoardDaoImpl updateBoard ");
-		sqlSession.update(namespace+".updateBoard",num);
+		sqlSession.update(namespace+".updateBoard",boardBean);
 		
 	}
 

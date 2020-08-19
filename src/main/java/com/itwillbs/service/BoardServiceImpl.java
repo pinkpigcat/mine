@@ -84,9 +84,9 @@ public class BoardServiceImpl implements BoardService, BoardDao {
 
 
 	@Override
-	public void updateBoard(int num) {
+	public void updateBoard(BoardBean boardBean) {
 		System.out.println("BoardServiceImpl updateBoard");
-		boardDao.updateBoard(num);
+		boardDao.updateBoard(boardBean);
 		
 	}
 
@@ -114,7 +114,7 @@ public class BoardServiceImpl implements BoardService, BoardDao {
 				bb.setDate(new Timestamp(System.currentTimeMillis()));//글쓴날짜
 					
 				//답글 순서 재배치
-				boardDao.updateRe_seq(bb);
+//				boardDao.updateRe_seq(bb);
 						
 				//답글값설정
 				bb.setRe_ref(bb.getRe_ref()); //  그룹번호 그대로
@@ -130,7 +130,7 @@ public class BoardServiceImpl implements BoardService, BoardDao {
 	@Override
 	public void updateRe_seq(BoardBean bb) {
 		
-			boardDao.updateRe_seq(bb);
+		boardDao.updateRe_seq(bb);
 	}
 
 
@@ -260,6 +260,7 @@ public class BoardServiceImpl implements BoardService, BoardDao {
 		
 		boardDao.reWrite(boardBean);
 	}
+
 
 
 

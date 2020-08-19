@@ -37,14 +37,7 @@
 <!-- 메인이미지 -->
 
 <!-- 왼쪽메뉴 -->
-<nav id="sub_menu">
-<ul>
-<li><a href="../center/notice.jsp">Notice</a></li>
-<li><a href="#">Public News</a></li>
-<li><a href="../center/fwriteForm.jsp">Driver Download</a></li>
-<li><a href="#">Service Policy</a></li>
-</ul>
-</nav>
+<jsp:include page="../inc/left.jsp"/>
 <!-- 왼쪽메뉴 -->
 
 <!-- 게시판 -->
@@ -57,10 +50,6 @@
     height: 15px;
     width: 550px;
 " value="${sessionScope.id}" readonly ></td></tr>
-	<tr><td>비밀번호</td><td><input type="password" class="writeInput" name="pass" style="
-    height: 15px;
-    width: 550px;
-"></td></tr>
 	<tr><td>제목</td><td><input type="text" class="writeInput" name="subject" style="
     height: 15px;
     width: 550px;

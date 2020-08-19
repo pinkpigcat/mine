@@ -43,7 +43,7 @@
 	</update>
   	
    <update id="updateBoard">
-		update jspdb5.board2 set subject=#{subject},content=#{content} where num=#{num} and pass=#{pass}
+		update jspdb5.board2 set subject=#{subject},content=#{content},file=#{file} where num=#{num}
 	</update>
 	
 	<insert id="reWrite">

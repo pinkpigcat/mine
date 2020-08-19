@@ -38,14 +38,7 @@
 <!-- 메인이미지 -->
 
 <!-- 왼쪽메뉴 -->
-<nav id="sub_menu">
-<ul>
-<li><a href="../center/notice.jsp">Notice</a></li>
-<li><a href="#">Public News</a></li>
-<li><a href='<c:url value="/center/fnotice"></c:url>'>Driver Download</a></li>
-<li><a href="#">Service Policy</a></li>
-</ul>
-</nav>
+<jsp:include page="../inc/left.jsp"/>
 
 <!-- 왼쪽메뉴 -->
 
@@ -98,8 +91,8 @@
 </div>
 
 <div class="clear"></div>
-<div id="page_control">
 
+<div id="page_control">
 <c:if test="${pb.startPage>pb.pageBlock}">
 <a href='<c:url value="/center/notice?pageNum=${pb.startPage-pb.pageBlock}"></c:url>'>Prev</a>
 </c:if>	
@@ -112,8 +105,10 @@
 <c:if test="${pb.endPage<pb.pageBlock}">
 <a href='<c:url value="/center/notice?pageNum=${pb.startPage+pb.pageBlock}"></c:url>'>Next</a> 
 </c:if>
-
 </div>
+
+
+
 </article>
 <!-- 게시판 -->
 <!-- 본문들어가는 곳 -->

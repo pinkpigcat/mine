@@ -18,7 +18,7 @@ public interface BoardService {
 
 	public BoardBean getBoardContent(int num);
 
-	public void updateBoard(int num);
+	public void updateBoard(BoardBean boardBean);
 
 	public void deleteBoard(int num);
 

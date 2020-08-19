@@ -9,8 +9,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
 <link href='<c:url value="/resources/css/default.css"/>' rel="stylesheet" type="text/css">
 <link href='<c:url value="/resources/css/subpage.css"/>' rel="stylesheet" type="text/css">
 <!--[if lt IE 9]>
@@ -50,14 +48,7 @@
 <!-- 메인이미지 -->
 
 <!-- 왼쪽메뉴 -->
-<nav id="sub_menu">
-<ul>
-<li><a href="../center/notice.jsp" style="padding-bottom: 20px;">Notice</a></li>
-<li><a href="#" style="padding-bottom: 20px;">Public News</a></li>
-<li><a href="../center/fnotice.jsp" style="padding-bottom: 20px;" >Driver Download</a></li>
-<li><a href="#" style="padding-bottom: 20px;" >Service Policy</a></li>
-</ul>
-</nav>
+<jsp:include page="../inc/left.jsp"/>
 <!-- 왼쪽메뉴 -->
 
 <!-- 게시판 -->
@@ -138,17 +129,18 @@
 <div class="clear"></div>
 
 <div id="page_control">
-<c:if test="${pb.startPage > pb.pageBlock}">
-	<a href='<c:url value="/board/flist?pageNum=${pb.startPage - pb.pageBlock}"/>'>Prev</a>
-</c:if>
+<c:if test="${pb.startPage>pb.pageBlock}">
+<a href='<c:url value="/center/fnoticeImage?pageNum=${pb.startPage-pb.pageBlock}"></c:url>'>Prev</a>
+</c:if>	
 
-<c:forEach var="i" begin="${pb.startPage }" end="${pb.endPage }" step="1">
-	<a href='<c:url value="/board/flist?pageNum=${i}"/>'>${i }</a> 
+<c:forEach var="i" begin="${pb.startPage}" end="${pb.endPage}" step="1">
+	<a href='<c:url value="/center/fnoticeImage?pageNum=${i}"/>'>${i}</a> 
 </c:forEach>
 
-<c:if test="${pb.endPage < pb.pageCount}">
-	<a href='<c:url value="/board/flist?pageNum=${pb.startPage + pb.pageBlock}"/>'>Next</a>
-</c:if>	
+
+<c:if test="${pb.endPage<pb.pageBlock}">
+<a href='<c:url value="/center/fnoticeImage?pageNum=${pb.startPage+pb.pageBlock}"></c:url>'>Next</a> 
+</c:if>
 </div>
 
 

@@ -186,8 +186,7 @@ public class BoardController {
 	public String updateFormPOST(Model model,HttpServletRequest request,BoardBean boardBean) {
 		System.out.println("/center/updateForm POST");
 		
-		int num=Integer.parseInt(request.getParameter("num"));
-		boardService.updateBoard(num);
+		boardService.updateBoard(boardBean);
 		
 		System.out.println("글수정완");
 		
@@ -214,7 +213,6 @@ public class BoardController {
 	
 	
 	
-	
 	//파일업로드(image) 글쓰기   GET
 	@RequestMapping(value = "/center/fwrite", method = RequestMethod.GET)
 	
@@ -225,7 +223,7 @@ public class BoardController {
 	}
 	
 	
-	//파일 업로드 글쓰기 POST
+	//파일 업로드  POST
 	@RequestMapping(value = "/center/fwrite", method = RequestMethod.POST)
 	
 	public String fwritePOST(HttpServletRequest request,MultipartFile file) {
@@ -247,7 +245,6 @@ public class BoardController {
 		
 		BoardBean boardBean = new BoardBean();
 		boardBean.setName(request.getParameter("name"));
-		boardBean.setPass(request.getParameter("pass"));
 		boardBean.setSubject(request.getParameter("subject"));
 		boardBean.setContent(request.getParameter("content"));
 		boardBean.setFile(saveName);
@@ -259,36 +256,7 @@ public class BoardController {
 	}
 	
 	
-
-	//파일업로드 글목록  (db분할했음) GET
-	@RequestMapping(value = "/center/fnotice", method = RequestMethod.GET)
 	
-	public String geFlist(Model model,HttpServletRequest request) {
-		System.out.println("/center/fnotice get");
-		//리스트를 보여주기위한 구문 들어가야함
-		
-		PageBean pb=new PageBean();
-		pb.setPageSize(10);  //짤라서 가져올 갯수
-		
-		String pageNum=request.getParameter("pageNum");//현재 페이지 번호 가져오기
-		
-		if (pageNum==null) {
-			pb.setPageNum("1"); //이것만 String인 이유
-		}else {
-			pb.setPageNum(pageNum); //request객체에서 직접 가져온 값
-		}
-		
-		pb.setCount(boardService.getBoardCount());
-		
-		//---------------------------
-		
-		List<BoardBean> boardList=boardService.getBoardList(pb);
-		
-		model.addAttribute("boardList",boardList);
-		model.addAttribute("pb",pb);
-		
-		return "/center/fnotice";
-	}
 
 
 	//이미지게시판 글목록  GET 
@@ -323,7 +291,53 @@ public class BoardController {
 
 	
 	
-
+	// 이미지글수정 GET
+	@RequestMapping(value = "/center/fnoticeImageUpdateForm", method = RequestMethod.GET)
+	
+	public String fnoticeImageUpdateGET(Model model,HttpServletRequest request,BoardBean bb) {
+		System.out.println("/center/fnoticeImageUpdateForm get");
+		
+		int num=Integer.parseInt(request.getParameter("num"));
+		
+		BoardBean boradBean=boardService.getBoardContent(num);
+		
+		model.addAttribute("boardBean", boradBean);
+		
+		return "center/fnoticeImageUpdateForm";
+		
+	}
+	
+	// 이미지글수정 POST
+	@RequestMapping(value = "/center/fnoticeImageUpdateForm", method = RequestMethod.POST)
+	
+	public String fnoticeImageUpdatePost(HttpServletRequest request,MultipartFile file) {
+		System.out.println("/center/fnoticeImageUpdateForm POST");
+		
+		UUID uid = UUID.randomUUID();
+		String saveName=uid.toString()+"_"+file.getOriginalFilename();
+		System.out.println("저장한 saveName"+saveName);
+		
+		
+		//uploadPath servlet-context에 경로지정을 해놨음
+		File target = new File(uploadPath,saveName); //경로에 파일저장
+		
+		try {
+			FileCopyUtils.copy(file.getBytes(),target); //in 파일을 가져와서,out 파일을 target에 복사
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		BoardBean boardBean = new BoardBean();
+		boardBean.setName(request.getParameter("name"));
+		boardBean.setNum(Integer.parseInt(request.getParameter("num")));
+		boardBean.setSubject(request.getParameter("subject"));
+		boardBean.setContent(request.getParameter("content"));
+		boardBean.setFile(saveName);
+		
+		boardService.updateBoard(boardBean);
+		
+		return "redirect:/center/fnoticeImage";
+	}
+	
 	
 	
 	//파일다운로드 get
@@ -393,6 +407,14 @@ public class BoardController {
 	}
 	
 	
+	//지도
+	@RequestMapping(value = "/company/map", method = RequestMethod.GET)
+	
+	public String mapget(Model model,HttpServletRequest request) {
+		System.out.println("/company/map Get");
+		
+		return "company/welcome";
+	}
 	
 	
 

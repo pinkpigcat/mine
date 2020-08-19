@@ -22,7 +22,7 @@
 <nav id="top_menu">
 <ul>
 	<li><a href='<c:url value="/main/main"></c:url>'>HOME</a></li>
-<!-- 	<li><a href="/company/welcome.jsp">DIRECTION </a></li> -->
+	<li><a href='<c:url value="/company/map"></c:url>'>DIRECTION </a></li>
 	<li><a href='<c:url value="/center/plant"></c:url>'>PLANT</a></li>
 	<li><a href='<c:url value="/center/fnoticeImage"></c:url>'>GALLERY</a></li>
 	<li><a href='<c:url value="/center/notice"></c:url>'>BOARD</a></li>
