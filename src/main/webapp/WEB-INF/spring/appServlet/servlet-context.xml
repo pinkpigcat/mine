@@ -39,7 +39,7 @@
       <beans:property name="host" value="smtp.naver.com" />
       <beans:property name="port" value="465" />
       <beans:property name="username" value="forgiving3@naver.com" />
-      <beans:property name="password" value="leaveme12!!" />
+      <beans:property name="password" value="leaveme12!!^^" />
       <beans:property name="javaMailProperties">
          <beans:props>
                <beans:prop  key="mail.smtp.starttls.enable">true</beans:prop >
